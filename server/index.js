@@ -6,8 +6,8 @@ const { auth } = require('./middleware/auth');
 const { User } = require('./models/User');
 const mongoose = require('mongoose');
 const config = require('./config/key');
-app.use(cookieParser());
 
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -20,6 +20,10 @@ mongoose
   })
   .then(() => console.log('MongoDB Connected...'))
   .catch((err) => console.log(err));
+
+app.get('/api/hello', (req, res) => {
+  res.send('hello');
+});
 
 app.get('/', (req, res) => res.send('hello world'));
 app.post('/api/users/register', (req, res) => {
